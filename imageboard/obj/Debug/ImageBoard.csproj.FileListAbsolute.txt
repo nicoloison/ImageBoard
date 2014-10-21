@@ -18,3 +18,11 @@ c:\users\aselab\documents\visual studio 2012\Projects\ImageBoard\ImageBoard\obj\
 c:\users\aselab\documents\visual studio 2012\Projects\ImageBoard\ImageBoard\obj\Debug\ImageBoard.csproj.GenerateResource.Cache
 c:\users\aselab\documents\visual studio 2012\Projects\ImageBoard\ImageBoard\obj\Debug\ImageBoard.exe
 c:\users\aselab\documents\visual studio 2012\Projects\ImageBoard\ImageBoard\obj\Debug\ImageBoard.pdb
+C:\Users\garance\Documents\GitHub\ImageBoard\ImageBoard\obj\Debug\MainWindow.baml
+C:\Users\garance\Documents\GitHub\ImageBoard\ImageBoard\obj\Debug\MainWindow.g.cs
+C:\Users\garance\Documents\GitHub\ImageBoard\ImageBoard\obj\Debug\App.g.cs
+C:\Users\garance\Documents\GitHub\ImageBoard\ImageBoard\obj\Debug\ImageBoard_MarkupCompile.cache
+C:\Users\garance\Documents\GitHub\ImageBoard\ImageBoard\obj\Debug\ImageBoard.g.resources
+C:\Users\garance\Documents\GitHub\ImageBoard\ImageBoard\obj\Debug\ImageBoard.Properties.Resources.resources
+C:\Users\garance\Documents\GitHub\ImageBoard\ImageBoard\obj\Debug\ImageBoard.csproj.GenerateResource.Cache
+C:\Users\garance\Documents\GitHub\ImageBoard\ImageBoard\obj\Debug\ImageBoard.csprojResolveAssemblyReference.cache
