@@ -168,11 +168,9 @@ namespace ImageBoard
 
                 SoD.On("dictionary", (dict) =>
                 {
-                    
-                    Dictionary<string, dynamic> parsedMessage = SoD.ParseMessageIntoDictionary(dict);
-                    Newtonsoft.Json.Linq.JObject o = parsedMessage["data"]["data"];
+                    Newtonsoft.Json.Linq.JObject o = dict.data.data;
                     for(int i=1;i<=o.Count;i++){
-                        DictionaryOfImagesReceived.Add(i.ToString(),(string) parsedMessage["data"]["data"][i.ToString()]);
+                        DictionaryOfImagesReceived.Add(i.ToString(), (string)dict.data.data[i.ToString()]);
                     }
                     ProcessDictionary();
 
