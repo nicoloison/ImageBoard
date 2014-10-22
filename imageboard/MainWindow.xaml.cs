@@ -187,7 +187,7 @@ namespace ImageBoard
                 System.Drawing.Image img = System.Drawing.Image.FromFile(fileLocation);
                 String strToSend = ImageToBase64(img, img.RawFormat);
                 //SoD.SendStringToDevices(strToSend, selection);
-                SoD.SendToDevices.All("string", strToSend);
+                SoD.SendToDevices.InView("string", strToSend);
             }
 
             # endregion
@@ -265,7 +265,7 @@ namespace ImageBoard
                 // CANT gET THE SAMPLE CLIENT CODE TO WORK
                 String strToSend = "GetImages";
               //  SoD.SendStringToDevices(strToSend, selection);
-                SoD.SendToDevices.All(strToSend);
+                SoD.SendToDevices.InView("string",strToSend);
             }
 
             public System.Drawing.Image Base64ToImage(string base64String)
