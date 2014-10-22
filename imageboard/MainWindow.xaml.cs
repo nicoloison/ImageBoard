@@ -296,6 +296,11 @@ namespace ImageBoard
                 img.Stretch = System.Windows.Media.Stretch.Fill;
                 return img;
             }
+            
+               private void Button_Click_1(object sender, RoutedEventArgs e)
+            {
+                SoD.StartSendingOrientation(200);
+            }
 
        
     }
