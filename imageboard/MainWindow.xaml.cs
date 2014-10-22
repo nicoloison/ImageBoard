@@ -165,7 +165,6 @@ namespace ImageBoard
 
                 SoD.On("request", (data) =>
                 {
-                    Console.WriteLine("Received request: " + data);
                 });
 
                 SoD.On("requestedData", (dict) =>
