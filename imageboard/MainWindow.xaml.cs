@@ -166,14 +166,14 @@ namespace ImageBoard
                     Console.WriteLine("Received request: " + data);
                 });
 
-                SoD.On("dictionary", (dict) =>
+                SoD.On("requestedData", (dict) =>
                 {
-                    Newtonsoft.Json.Linq.JObject o = dict.data.data;
-                    for(int i=1;i<=o.Count;i++){
-                        DictionaryOfImagesReceived.Add(i.ToString(), (string)dict.data.data[i.ToString()]);
+                    Newtonsoft.Json.Linq.JObject o = dict.data;
+                    for (int i = 1; i <= o.Count; i++)
+                    {
+                        DictionaryOfImagesReceived.Add(i.ToString(), (string)dict.data[i.ToString()]);
                     }
                     ProcessDictionary();
-
                 });
 
                 // make the socket.io connection
