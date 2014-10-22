@@ -182,12 +182,11 @@ namespace ImageBoard
 
             private void SendPicture()
             {
-                String[] selection = { "inView" };
                 String fileLocation = txtBrowse.Text; 
                 System.Drawing.Image img = System.Drawing.Image.FromFile(fileLocation);
                 String strToSend = ImageToBase64(img, img.RawFormat);
                 //SoD.SendStringToDevices(strToSend, selection);
-                SoD.SendToDevices.InView(strToSend, selection);
+                SoD.SendToDevices.All("string", strToSend);
             }
 
             # endregion
@@ -263,10 +262,9 @@ namespace ImageBoard
             private void GetImages_Click(object sender, RoutedEventArgs e)
             {
                 // CANT gET THE SAMPLE CLIENT CODE TO WORK
-                String[] selection = { "inView" };
                 String strToSend = "GetImages";
               //  SoD.SendStringToDevices(strToSend, selection);
-                SoD.SendToDevices.InView(strToSend, selection);
+                SoD.SendToDevices.All(strToSend);
             }
 
             public System.Drawing.Image Base64ToImage(string base64String)
