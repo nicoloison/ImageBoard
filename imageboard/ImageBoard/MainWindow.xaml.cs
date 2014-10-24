@@ -251,11 +251,6 @@ namespace ImageBoard
                 return img;
             }
 
-            private void Calibrate_click_button(object sender, RoutedEventArgs e)
-            {
-                SoD.StartSendingOrientation(200);
-            }
-
        
     }
 }

@@ -111,7 +111,7 @@ namespace ImageBoard
                 SoD.ownDevice.orientation = _deviceOrientation;
                 SoD.ownDevice.FOV = _deviceFOV;
                 SoD.ownDevice.observer.observeRange = _deviceObservableRange;
-                SoD.ownDevice.stationary=false;
+                SoD.ownDevice.stationary = false;
 
                 SoD.ownDevice.ID = _deviceID;
                 SoD.ownDevice.name = _deviceName;
@@ -146,8 +146,8 @@ namespace ImageBoard
                 SoD.ownDevice.SetDeviceInformation(_deviceWidthInMM, _deviceHeightInMM, _deviceLocationX, _deviceLocationY, _deviceLocationZ, _deviceType, _deviceIsStationary);
                 SoD.ownDevice.orientation = _deviceOrientation;
                 SoD.ownDevice.FOV = _deviceFOV;
-                SoD.ownDevice.stationary=false;
 
+                SoD.ownDevice.stationary = false;
                 // Name and ID of device - displayed in Locator
                 SoD.ownDevice.ID = _deviceID;
                 SoD.ownDevice.name = _deviceName;
@@ -165,6 +165,7 @@ namespace ImageBoard
 
                 SoD.On("request", (data) =>
                 {
+                    Console.WriteLine("Received request: " + data);
                 });
 
                 SoD.On("requestedData", (dict) =>
