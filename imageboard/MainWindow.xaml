@@ -11,5 +11,6 @@
             <Button Content="GetImages" Click="GetImages_Click" Canvas.Left="88" Canvas.Top="363" Width="160" RenderTransformOrigin="0.4,-0.15"/>
         </Canvas>
         <Button Content="Calibrate" HorizontalAlignment="Left" Margin="282,328,0,0" VerticalAlignment="Top" Width="75" Height="37" Click="Button_Click_1"/>
+        <Label Name="txtBoardInView" Content=""  Foreground="White" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

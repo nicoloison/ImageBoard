@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -155,6 +156,8 @@ namespace ImageBoard
 
             private void RegisterSoDEvents()
             {
+                Thread checkForDevicesInView = new Thread(() => getDevicesInView());
+                checkForDevicesInView.Start();
                 // register for 'connect' event with io server
                 SoD.On("connect", (data) =>
                 {
@@ -182,6 +185,8 @@ namespace ImageBoard
                 SoD.SocketConnect();
             }
 
+            # endregion
+
             private void SendPicture()
             {
                 String fileLocation = txtBrowse.Text; 
@@ -191,8 +196,26 @@ namespace ImageBoard
                 SoD.SendToDevices.InView("string", strToSend);
             }
 
-            # endregion
+            private void getDevicesInView()
+            {
+                while(true){
+                    SoD.GetDevicesWithSelection("inView",updateDeviceInView);
+                    System.Threading.Thread.Sleep(1);
+                }
+            }
 
+            private void updateDeviceInView(List<Device> devices)
+            {
+                if (devices.Count == 0)
+                {
+                    txtBoardInView.Content = "";
+                    return;
+                }
+                else
+                {
+                    txtBoardInView.Content = "I see something";
+                }
+            }
 
             private void ProcessDictionary() 
             {
@@ -302,6 +325,7 @@ namespace ImageBoard
                private void Button_Click_1(object sender, RoutedEventArgs e)
             {
                 SoD.StartSendingOrientation(200);
+                SoD.CalibrateOrientation();
             }
 
        
