@@ -90,6 +90,8 @@ namespace ImageBoard
                 ConfigureDevice();
                 // Routes definition
                 RegisterSoDEvents();
+                Thread checkForDevicesInView = new Thread(() => getDevicesInView());
+                checkForDevicesInView.Start();
             }
             /// <summary>
             /// Region SoD contains SoD Configuration, Device Configuration, Definition of Routes and their handlers (e.g. sending notes)
@@ -156,8 +158,6 @@ namespace ImageBoard
 
             private void RegisterSoDEvents()
             {
-                Thread checkForDevicesInView = new Thread(() => getDevicesInView());
-                checkForDevicesInView.Start();
                 // register for 'connect' event with io server
                 SoD.On("connect", (data) =>
                 {
