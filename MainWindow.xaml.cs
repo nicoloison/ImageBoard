@@ -321,11 +321,20 @@ namespace ImageBoard
                 img.Stretch = System.Windows.Media.Stretch.Fill;
                 return img;
             }
-            
-               private void Button_Click_1(object sender, RoutedEventArgs e)
+
+            private void Calibration_Button_Click(object sender, RoutedEventArgs e)
+            {
+                SoD.CalibrateOrientation();
+                CalibrateButton.Visibility = System.Windows.Visibility.Hidden;
+                SendOrientationButton.Visibility = System.Windows.Visibility.Visible;
+            }
+
+            private void Send_Orientation_Button_Click(object sender, RoutedEventArgs e)
             {
                 SoD.StartSendingOrientation(200);
-                SoD.CalibrateOrientation();
+                SoD.StopSendingOrientation();
+                CalibrateButton.Visibility = System.Windows.Visibility.Visible;
+                SendOrientationButton.Visibility = System.Windows.Visibility.Hidden;
             }
 
        
