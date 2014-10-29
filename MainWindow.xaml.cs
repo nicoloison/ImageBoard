@@ -337,6 +337,118 @@ namespace ImageBoard
                 SendOrientationButton.Visibility = System.Windows.Visibility.Hidden;
             }
 
+
+
+            Point currentPoint = new Point(0, 0);
+            private SolidColorBrush _selectedColor = Brushes.Black;
+
+            private void _drawingCanvas_MouseDown(object sender, MouseButtonEventArgs e)
+            {
+                currentPoint = e.GetPosition(_drawingCanvas);
+            }
+
+            private void _drawingCanvas_MouseMove(object sender, MouseEventArgs e)
+            {
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    Line line = new Line();
+                    line.StrokeThickness = this._brushSlider.Value;
+                    line.Stroke = _selectedColor;
+                    line.X1 = currentPoint.X;
+                    line.Y1 = currentPoint.Y;
+                    line.X2 = e.GetPosition(_drawingCanvas).X;
+                    line.Y2 = e.GetPosition(_drawingCanvas).Y;
+
+                    currentPoint = e.GetPosition(_drawingCanvas);
+
+                    _drawingCanvas.Children.Add(line);
+                }
+                else
+                {
+                    currentPoint = e.GetPosition(_drawingCanvas);
+                }
+            }
+
+            public void ExportToPng(Uri path, Canvas surface)
+            {
+                if (path == null) return;
+
+                // Save current canvas transform
+                Transform transform = surface.LayoutTransform;
+                // reset current transform (in case it is scaled or rotated)
+                surface.LayoutTransform = null;
+
+                // Get the size of canvas
+                Size size = new Size(surface.Width, surface.Height);
+                // Measure and arrange the surface
+                // VERY IMPORTANT
+                surface.Measure(size);
+                surface.Arrange(new Rect(size));
+
+                // Create a render bitmap and push the surface to it
+                RenderTargetBitmap renderBitmap =
+                  new RenderTargetBitmap(
+                    (int)size.Width,
+                    (int)size.Height,
+                    96d,
+                    96d,
+                    PixelFormats.Pbgra32);
+                renderBitmap.Render(surface);
+
+                // Create a file stream for saving image
+                using (FileStream outStream = new FileStream(path.LocalPath, FileMode.Create))
+                {
+                    // Use png encoder for our data
+                    PngBitmapEncoder encoder = new PngBitmapEncoder();
+                    // push the rendered bitmap to it
+                    encoder.Frames.Add(BitmapFrame.Create(renderBitmap));
+                    // save the data to the stream
+                    encoder.Save(outStream);
+                }
+
+                // Restore previously saved layout
+                surface.LayoutTransform = transform;
+            }
+
+
+            #region Color Palette Event Handlers
+
+            private void OnBlackSelect(object sender, MouseButtonEventArgs e)
+            {
+                this._selectedColor = (SolidColorBrush)this._blackPalette.Fill;
+            }
+
+            private void OnCrimsonSelect(object sender, MouseButtonEventArgs e)
+            {
+                this._selectedColor = (SolidColorBrush)this._redPalette.Fill;
+            }
+
+            private void OnBlueSelect(object sender, MouseButtonEventArgs e)
+            {
+                this._selectedColor = (SolidColorBrush)this._bluePalette.Fill;
+            }
+
+            private void OnPinkSelect(object sender, MouseButtonEventArgs e)
+            {
+                this._selectedColor = (SolidColorBrush)this._pinkPalette.Fill;
+            }
+
+            #endregion
+
+            private void _clearButton_Click(object sender, RoutedEventArgs e)
+            {
+                this._drawingCanvas.Children.Clear();
+            }
+
+            private void CreateFile_Click(object sender, RoutedEventArgs e)
+            {
+                ExportToPng(new Uri(@"C:\ODTabletLogs\test.png"), _drawingCanvas);
+            }
+
+
+
+
+
        
     }
 }
